@@ -1,0 +1,26 @@
+# General
+.DS_Store
+
+# Editor
+.cmd
+.pickle
+.vscode
+.idea
+
+# Python
+*.pyc
+
+# Python venv
+.python-version
+venv/*
+
+# Allow for local uncommited settings file, i.e. local_joe.py
+local_*.py
+
+# Allow for local static/ directory within the project
+src/static
+
+# SQLite
+*.sqlite
+*.sqlite3
+
