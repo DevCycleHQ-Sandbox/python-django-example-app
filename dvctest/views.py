@@ -1,27 +1,24 @@
 from django.conf import settings
 from django.http import HttpResponse
+import logging
 
-from devcycle_python_sdk import UserData
-from devcycle_python_sdk.rest import ApiException
+from devcycle_python_sdk.models.user import User
 
+logger = logging.getLogger(__name__)
 
-def homePageView(request):
-    # all functions require user data to be an instance of the UserData class
-    user = UserData(
+variable_key = "test-boolean-variable"
+
+def home_page(request):
+    # all functions require user data to be an instance of the User class
+    user = User(
         user_id='test',
         email='example@example.ca',
-        country='CA'
+        country='CA',
     )
-    try:
-        # Get all features by key for user data
-        variable = settings.DEVCYCLE_CLIENT.variable(user, 'test', 'default-value')
-        print("Variable value is: ", variable.value)
-        if variable.value:
-            return HttpResponse("Hello, World! true")
-        else:
-            return HttpResponse("Hello, World! false")
-    except ApiException as e:
-        print("Exception when calling DVCClient->all_features: %s\n" % e)
-        return HttpResponse("broken")
-
-    
+    # Check whether a feature flag is on
+    if settings.DEVCYCLE_CLIENT.variable(user, variable_key, False).value:
+        logger.info(f'{variable_key} is on')
+        return HttpResponse("Hello, World! Your feature is on!")
+    else:
+        logger.info(f'{variable_key} is off')
+        return HttpResponse("Hello, World! Your feature is off.")

@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from os import environ
 from pathlib import Path
+
+from devcycle_python_sdk import DevCycleCloudClient, DevCycleCloudOptions
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,7 +133,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DevCycle Settings
-from devcycle_python_sdk import Configuration, DVCClient
-devcycle_config = Configuration()
-devcycle_config.api_key['Authorization'] = '<YOUR DEVCYCLE SERVER SDK KEY>'
-DEVCYCLE_CLIENT = DVCClient(devcycle_config)
+devcycle_config = DevCycleCloudOptions()
+DEVCYCLE_CLIENT = DevCycleCloudClient(environ['DVC_SERVER_SDK_KEY'], devcycle_config)
