@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from os import environ
 from pathlib import Path
 
-from devcycle_python_sdk import DevCycleCloudClient, DevCycleCloudOptions
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -57,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dvctest.middleware.devcycle_middleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -133,5 +132,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DevCycle Settings
-devcycle_config = DevCycleCloudOptions()
-DEVCYCLE_CLIENT = DevCycleCloudClient(environ['DVC_SERVER_SDK_KEY'], devcycle_config)
+DEVCYCLE_SDK_KEY = environ['DVC_SDK_KEY']

@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.http import HttpResponse
 import logging
 
@@ -16,7 +15,7 @@ def home_page(request):
         country='CA',
     )
     # Check whether a feature flag is on
-    if settings.DEVCYCLE_CLIENT.variable(user, variable_key, False).value:
+    if request.flags.variable_value(user, variable_key, False):
         logger.info(f'{variable_key} is on')
         return HttpResponse("Hello, World! Your feature is on!")
     else:
