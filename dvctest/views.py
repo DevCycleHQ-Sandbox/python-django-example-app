@@ -15,7 +15,7 @@ def home_page(request):
         country='CA',
     )
     # Check whether a feature flag is on
-    if request.flags.variable_value(user, variable_key, False):
+    if request.devcycle.variable_value(user, variable_key, False):
         logger.info(f'{variable_key} is on')
         return HttpResponse("Hello, World! Your feature is on!")
     else:
