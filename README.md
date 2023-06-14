@@ -5,7 +5,7 @@ To find Python SDK usage documentation, visit our [docs](https://docs.devcycle.c
 
 ## Requirements.
 
-Python 3.4+ and Django 4.2+
+Python 3.7+ and Django 4.2+
 
 ## Installation
 
@@ -22,11 +22,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-See [settings.py](https://github.com/DevCycleHQ/python-django-example-app/blob/main/config/settings.py#L132) for the
-singleton instantiation of the `DVCClient()` object, and [views.py](https://github.com/DevCycleHQ/python-django-example-app/blob/main/dvctest/views.py#L8)
-for an example of its usage.
+See [settings.py](https://github.com/DevCycleHQ/python-django-example-app/blob/main/config/settings.py#L135) for the
+the configuration of your SDK key in the `DEVCYCLE_SDK_KEY` setting, and [views.py](https://github.com/DevCycleHQ/python-django-example-app/blob/main/dvctest/views.py) for an example of using the DevCycle client to check the value of a feature flag.
 
-*Please note that instantiating the `DVCClient()` object in the Django settings file is not considered a best practice
-for Django, but is a temporary accommodation due to some conflicts between thread pool handling in the DevCycle SDK and
-Django management commands. Scheduled work on the DevCycle Python SDK revisits how the thread pool is handled, and ensures
-more graceful cleanup and closing of threads so that SDK users do not need to take that into consideration.* 
+For convenience, a middleware is used to add the DevCycle client to the request object, so you can access it in your views as `request.devcycle`. See `middleware.py` for details.
