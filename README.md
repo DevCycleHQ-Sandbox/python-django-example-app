@@ -23,6 +23,6 @@ python manage.py runserver
 ```
 
 See [settings.py](https://github.com/DevCycleHQ/python-django-example-app/blob/main/config/settings.py#L135) for the
-the configuration of your SDK key in the `DEVCYCLE_SDK_KEY` setting, and [views.py](https://github.com/DevCycleHQ/python-django-example-app/blob/main/dvctest/views.py) for an example of using the DevCycle client to check the value of a feature flag.
+the configuration of your SDK key in the `DEVCYCLE_SERVER_SDK_KEY` setting, and [views.py](https://github.com/DevCycleHQ/python-django-example-app/blob/main/devcycle_test/views.py) for an example of using the DevCycle client to check the value of a feature flag.
 
-For convenience, a middleware is used to add the DevCycle client to the request object, so you can access it in your views as `request.devcycle`. See `middleware.py` for details.
+For convenience, a middleware implementation is used to add the DevCycle client to the request object, so you can access it in your views as `request.devcycle`. See `middleware.py` for details. There are two examples of middleware, one for each type of DevCycle SDK: cloud bucketing and local bucketing.
