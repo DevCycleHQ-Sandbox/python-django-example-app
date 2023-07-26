@@ -56,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "devcycle_test.middleware.devcycle_local_middleware",
+    "devcycle_test.middleware.MaintenanceModeMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -132,4 +133,4 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # DevCycle Settings
-DEVCYCLE_SERVER_SDK_KEY = environ["DEVCYCLE_SERVER_SDK_KEY"]
+DEVCYCLE_SERVER_SDK_KEY = "<DEVCYCLE_SERVER_SDK_KEY>"
